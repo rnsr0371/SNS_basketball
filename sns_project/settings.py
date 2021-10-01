@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'kskz7jru#32da#@cl^d5q3_m8o$ykvp+49y336v66lme(rin9f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ["snsforbasketball.herokuapp.com"]
@@ -132,6 +132,6 @@ try:
 except ImportError:
     pass
 
-if not DEBUG:
+if DEBUG:
     import django_heroku
     django_heroku.settings(locals())
