@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+<form class="form-signin" method="post">{% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">アカウント作成</h1>
+    <p>・Twitterのアカウント名と同じアカウント名にすることを推奨します。<br>
+    ・アカウント名とパスワードが同じ等、パスワードが推測されやすい場合は、アカウント作成が失敗することがあります。<br>
+    ・製作者の技術不足でパスワードの変更や再発行はできないので、どこかにメモを取っておくよう、お願いいたします。<br>
+    ・アカウントを削除したい場合は「らんそうるい（TwitterID: @rnsr0371）」にDMを送ってください。手動で削除いたします。<br></p>
+    {% if error %}
+    {{ error }}
+    {% endif %}
+    <label for="inputEmail" class="visually-hidden">アカウント名</label>
+    <input type="text" id="inputEmail" class="form-control" placeholder="username" name="username_data" required autofocus>
+    <label for="inputPassword" class="visually-hidden">パスワード</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password_data" required>
+    <div class="checkbox mb-3">
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">アカウント作成</button>
+    <a href="{% url 'login' %}">ログイン</a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
+</form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <form action="" method="POST">{% csrf_token %}
+        <h2>投稿内容</h2>
+        <textarea name="content" rows="10" cols="100"></textarea><br>
+        <input type="hidden" name="author" value="{{ user.id }}">
+        <input type="submit" value="投稿する">
+    </form>
+</div>
+
+{% else %}
+ログインしてください。<br>
+<a href="{% url 'login' %}" class="btn btn-primary" role="button" aria-pressed="true">ログイン</a>
+
+{% endif %}
+{% endblock content %}

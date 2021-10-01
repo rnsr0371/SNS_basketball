@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+<form class="form-signin" method="post">{% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">ログイン</h1>
+    <p>初めてお越しになられた方は、お手数ですが、ログインボタンの下にある「アカウント作成」からアカウントを作成してください。</p>
+    {% if error %}
+    {{ error }}
+    {% endif %}
+    <label for="inputEmail" class="visually-hidden">アカウント名</label>
+    <input type="text" id="inputEmail" class="form-control" placeholder="username" name="username_data" required autofocus>
+    <label for="inputPassword" class="visually-hidden">パスワード</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password_data" required>
+    <div class="checkbox mb-3">
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">ログイン</button>
+    <a href="{% url 'signup' %}">アカウント作成</a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
+</form>
+</div>
+
+{% endblock content %}
