@@ -23,9 +23,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'kskz7jru#32da#@cl^d5q3_m8o$ykvp+49y336v66lme(rin9f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+try:
+    from config.local_settings import *
+except ImportError:
+    pass
 
-ALLOWED_HOSTS = []
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
+
+ALLOWED_HOSTS = ["snsforbasketball.herokuapp.com"]
 
 
 # Application definition
@@ -81,6 +89,10 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+db_from_env=dj_database_url.config()
+DATABASES["default"].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -118,6 +130,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/staticfile/'
+STATIC_ROOT=os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,"static")]
 
