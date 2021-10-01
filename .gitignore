@@ -1,1 +1,2 @@
 *.sqlite3
+sns_project/local_settings.py
