@@ -24,14 +24,7 @@ SECRET_KEY = 'kskz7jru#32da#@cl^d5q3_m8o$ykvp+49y336v66lme(rin9f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-try:
-    from config.local_settings import *
-except ImportError:
-    pass
 
-if not DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
 
 ALLOWED_HOSTS = ["snsforbasketball.herokuapp.com"]
 
@@ -134,3 +127,11 @@ STATIC_ROOT=os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,"static")]
 
+try:
+    from config.local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
